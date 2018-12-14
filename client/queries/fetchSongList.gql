@@ -1,0 +1,6 @@
+query {
+  songs {
+    id
+    title
+  }
+}

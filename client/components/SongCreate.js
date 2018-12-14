@@ -1,26 +1,26 @@
-import React, { Component } from 'react';
-import gql from 'graphql-tag';
-import { graphql } from 'react-apollo';
-import { Link, hashHistory } from 'react-router';
-import fetchSongList from '../queries/fetchSongList';
-import addSong from '../mutations/addSong';
+import React, { Component } from 'react'
+import gql from 'graphql-tag'
+import { graphql } from 'react-apollo'
+import { Link, hashHistory } from 'react-router'
+import fetchSongListQuery from '../queries/fetchSongList.gql'
+import addSong from '../mutations/addSong'
 
 class SongCreate extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
-    this.state = { title: '' };
+    this.state = { title: '' }
   }
 
   handleSubmit(event) {
-    event.preventDefault();
+    event.preventDefault()
 
     this.props
       .mutate({
         variables: { title: this.state.title },
-        refetchQueries: [{ query: fetchSongList }],
+        refetchQueries: [{ query: fetchSongListQuery }]
       })
-      .then(() => hashHistory.push('/'));
+      .then(() => hashHistory.push('/'))
   }
 
   render() {
@@ -36,8 +36,8 @@ class SongCreate extends Component {
           />
         </form>
       </div>
-    );
+    )
   }
 }
 
-export default graphql(addSong)(SongCreate);
+export default graphql(addSong)(SongCreate)
